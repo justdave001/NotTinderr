@@ -9,11 +9,14 @@ function TinderCards() {
 
     //code that runs based on condition (fast conditionals for react)
     useEffect(() => {
-        database
+        const unsubscribe = database
         .collection('people')
         .onSnapshot((snapshot) => 
           setPeople(snapshot.docs.map((doc) => doc.data()))
         );
+          return () => {
+            unsubscribe();
+          }
     }, []);
     
 
@@ -27,7 +30,6 @@ function TinderCards() {
     
     return(
         <div>
-            <h1> Cards </h1>
             <div className = "tinderCards__cardContainer">
             {people.map((person) => (
                 <TinderCard
@@ -46,4 +48,4 @@ function TinderCards() {
     </div>
     );
 }
-export default TinderCards
+export default TinderCards;
