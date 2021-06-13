@@ -19,6 +19,7 @@ function ChatScreen() {
         e.preventDefault();
 
         setMessages([...messages, {message: input }]);
+        setInput("");
     }
 
     return (

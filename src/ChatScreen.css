@@ -14,14 +14,14 @@
    margin-left: 10px;
    background-color: lightgray;
    padding: 15px;
-   border-radius: 20px;
+   border-radius: 30px;
 }
 
 .chatScreen__textUser {
     margin-left: auto;
     background-color: #D22B2B;
     padding: 15px;
-    border-radius: 20px;
+    border-radius: 30px;
     color: white;
 }
 
