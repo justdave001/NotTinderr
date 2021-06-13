@@ -3,6 +3,7 @@ import './ChatScreen.css';
 import Avatar from '@material-ui/core/Avatar';
 
 function ChatScreen() {
+    const [input, setInput] = useState('');
     const [messages, setMessages] = useState([
         {
             name: 'Nina',
@@ -12,22 +13,47 @@ function ChatScreen() {
         {
             message: 'Yeah Im good'
         },
-    ])
+    ]);
+
+    const handleSend = e => {
+        e.preventDefault();
+
+        setMessages([...messages, {message: input }]);
+    }
+
     return (
         <div className="chatScreen">
-           <p>YOU MATCHED WITH NINA ON 6/12/2021</p>
-           {messages.map(message => (
+           <p className="chatScreen__timestamp">
+               YOU MATCHED WITH NINA ON 6/12/2021
+           </p>
+            {messages.map((message) => 
+              message.name ? (
                <div className="chatScreen__message">
                   <Avatar 
-                  className="chatScreen"
+                  className="chatScreen__image"
                   alt={message.name}
                   src={message.image}
                   />
-                  <p>{message.message}</p>
+                  <p className="chatScreen__text">{message.message}</p>
                </div>
-
-           ))}
-
+            ) : (
+                <div className="chatScreen__message">
+                 <p className="chatScreen__textUser">{message.message}</p>
+             </div>
+              
+            ))}
+        <div>
+           <form className="chatScreen__input">
+               <input 
+               value={input}
+               onChange={(e) => setInput(e.target.value)}
+               className="chatScreen__inputField"
+               type="text" 
+               placeholder="Say something..." />
+               <button onClick={handleSend} type="submit" className="chatScreen__inputButton">Send</button>
+            </form>    
+        </div>   
+          
         </div>
     );
 }
